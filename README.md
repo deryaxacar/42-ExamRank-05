@@ -5,8 +5,6 @@
 - [cpp_module00](#cpp_module00)
 - [cpp_module01](#cpp_module01)
 
----
-
 ### cpp_module00
 
 `Warlock sınıfı`, `Coplien` formunu takip ederek uygun kapsülleme ve nesne yönelimli prensiplere uygun şekilde tasarlanmıştır. Sınıf, `name` (isim) ve `title` (ünvan) için özel niteliklere sahiptir ve bu nitelikler için getter ve setter metodları sunar. Ayrıca, Warlock'un kendini tanıtması ve yapıcı/yıkıcı mesajlarını işlemesi için metodlar içerir.
@@ -33,8 +31,6 @@
 ---
 
 ### Warlock class yapısı:
-
----
 
 ```cpp
 #pragma once
