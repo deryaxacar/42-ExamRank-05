@@ -2,18 +2,13 @@
   <h2>Sınav Çalışma Notları</h2>
 </div>
 
----
-
-- [cpp_module00](#cpp_module00)
+- [Level 1 - cpp_module00](#cpp_module00)
 - [cpp_module01](#cpp_module01)
 
----
-
-### cpp_module00
+<a name="cpp_module00"></a>
+## Level 1 - cpp_module00
 
 `Warlock sınıfı`, `Coplien` formunu takip ederek uygun kapsülleme ve nesne yönelimli prensiplere uygun şekilde tasarlanmıştır. Sınıf, `name` (isim) ve `title` (ünvan) için özel niteliklere sahiptir ve bu nitelikler için getter ve setter metodları sunar. Ayrıca, Warlock'un kendini tanıtması ve yapıcı/yıkıcı mesajlarını işlemesi için metodlar içerir.
-
----
 
 **Nitelikler**
 - `name`: Warlock'un ismini temsil eden özel bir string niteliği.
@@ -32,9 +27,9 @@
 **Kısıtlamalar**
 - `Warlock sınıfı` kopyalanamaz veya isim ve ünvan olmadan örneklenemez. Kopya yapıcı ve kopya atama operatörü silinerek bu kısıtlama uygulanmıştır.
 
----
-
 ### Warlock class yapısı:
+
+---
 
 ```cpp
 #pragma once
