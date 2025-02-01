@@ -6,6 +6,10 @@
 - [Level 2 - cpp_module01](#cpp_module01)
 - [Level 3 - cpp_module02](#cpp_module01)
 
+Açıklama : sınavda klasör isimlerini `cpp_module_00` `cpp_module_01` `cpp_module_02`
+şeklinde pushlayın. simülatörden çalışırken `cpp_module00` şeklinde `grademe` yapmanız gerekiyor, push yapmanıza gerek yoktur. 
+(repoya yazdıkça ekleme yapıcam public olmasında herhangi bir sakınca görmüyorum iyi çalışmalar.)
+
 ---
 
 <a name="cpp_module00"></a>
