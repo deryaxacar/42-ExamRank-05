@@ -6,10 +6,14 @@
 - [Level 2 - cpp_module01](#cpp_module01)
 - [Level 3 - cpp_module02](#cpp_module01)
 
+---
+
 <a name="cpp_module00"></a>
 ## Level 1 - cpp_module00
 
 `Warlock sınıfı`, `Coplien` formunu takip ederek uygun kapsülleme ve nesne yönelimli prensiplere uygun şekilde tasarlanmıştır. Sınıf, `name` (isim) ve `title` (ünvan) için özel niteliklere sahiptir ve bu nitelikler için getter ve setter metodları sunar. Ayrıca, Warlock'un kendini tanıtması ve yapıcı/yıkıcı mesajlarını işlemesi için metodlar içerir.
+
+
 
 **Nitelikler**
 - `name`: Warlock'un ismini temsil eden özel bir string niteliği.
