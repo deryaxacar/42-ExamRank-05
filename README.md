@@ -34,6 +34,8 @@
 
 ### Warlock class yapısı:
 
+---
+
 ```cpp
 #pragma once
 
@@ -68,6 +70,8 @@ class Warlock {
         void introduce() const;
 };
 ```
+
+---
 
 ### Açıklamalar:
 - `#pragma once`: Bu, başlık dosyasının yalnızca bir kez dahil edilmesini sağlar ve çoklu dahil etme sorunlarını önler.
