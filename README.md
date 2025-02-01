@@ -1,5 +1,5 @@
 <div align="center">
-  <h2>Çalışma Notları</h2>
+  <h2>Sınav Çalışma Notları</h2>
 </div>
 
 - [cpp_module00](#cpp_module00)
