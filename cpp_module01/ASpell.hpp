@@ -4,8 +4,6 @@
 #include "ATarget.hpp"
 
 using std::string;
-using std::cout;
-using std::endl;
 
 class ATarget;
 
@@ -21,4 +19,5 @@ class ASpell{
         virtual ~ASpell();
 
         void launch(const ATarget& target) const;
+
 };

@@ -15,8 +15,7 @@ class Warlock{
         const string& getTitle() const;
         void setTitle(const string& title);
         Warlock(const string& name, const string& title);
-        ~Warlock();
+        ~Warlock(); 
 
         void introduce() const;
-
 };

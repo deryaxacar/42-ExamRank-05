@@ -17,14 +17,13 @@ class Warlock{
     private:
         string _name;
         string _title;
-        map<string, ASpell*> _SpellBook;
+        map<string, ASpell*> _spellBook;
     public:
         const string& getName() const;
         const string& getTitle() const;
         void setTitle(const string& title);
-
         Warlock(const string& name, const string& title);
-        ~Warlock();
+        ~Warlock(); 
 
         void introduce() const;
 
