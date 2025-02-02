@@ -25,21 +25,16 @@ void Warlock::introduce() const {
 }
 
 void Warlock::learnSpell(const ASpell* spell) {
-    map<string, ASpell*>::iterator it = _SpellBook.find(spell->getName());
-    if(it == _SpellBook.end()){
-        _SpellBook[spell->getName()] = spell->clone();
-    }
+    _Spell.learnSpell(spell);
 }
 void Warlock::forgetSpell(const string& spellName) {
-    map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
-    if(it != _SpellBook.end()){
-        delete it->second;
-        _SpellBook.erase(spellName);
-    }
+    _Spell.forgetSpell(spellName);
 }
 void Warlock::launchSpell(const string& spellName, const ATarget& target) {
-    map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
-    if(it != _SpellBook.end()){
-        it->second->launch(target);
+    ASpell *tmp = _Spell.createSpell(spellName);
+
+    if(tmp != nullptr){
+        tmp->launch(target);
+        delete tmp;
     }
 }
