@@ -1,7 +1,6 @@
 #pragma once
 
 #include <map>
-#include <iostream>
 #include "ATarget.hpp"
 
 using std::string;
@@ -9,8 +8,8 @@ using std::map;
 
 class ATarget;
 
-class TargetGenerator{
-    protected:
+class TargetGenerator {
+    private:
         map<string, ATarget*> _TargetG;
     public:
         TargetGenerator();

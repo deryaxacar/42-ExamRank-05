@@ -1,4 +1,4 @@
-#pragma once
+#pragma once 
 
 #include <iostream>
 
@@ -6,7 +6,7 @@ using std::string;
 using std::cout;
 using std::endl;
 
-class Warlock{
+class Warlock {
     private:
         string _name;
         string _title;
@@ -14,8 +14,9 @@ class Warlock{
         const string& getName() const;
         const string& getTitle() const;
         void setTitle(const string& title);
+
         Warlock(const string& name, const string& title);
-        ~Warlock(); 
+        ~Warlock();
 
         void introduce() const;
 };

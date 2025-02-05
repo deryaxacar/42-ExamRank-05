@@ -1,4 +1,4 @@
-#pragma once
+#pragma once 
 
 #include <iostream>
 #include "ASpell.hpp"
@@ -9,7 +9,7 @@ using std::endl;
 
 class ASpell;
 
-class ATarget{
+class ATarget {
     protected:
         string _type;
     public:

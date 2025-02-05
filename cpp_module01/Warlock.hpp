@@ -1,4 +1,4 @@
-#pragma once
+#pragma once 
 
 #include <iostream>
 #include <map>
@@ -13,7 +13,7 @@ using std::map;
 class ASpell;
 class ATarget;
 
-class Warlock{
+class Warlock {
     private:
         string _name;
         string _title;
@@ -22,12 +22,13 @@ class Warlock{
         const string& getName() const;
         const string& getTitle() const;
         void setTitle(const string& title);
+
         Warlock(const string& name, const string& title);
-        ~Warlock(); 
+        ~Warlock();
 
         void introduce() const;
 
-        void learnSpell(const ASpell* spell);
+        void learnSpell(ASpell* spell);
         void forgetSpell(const string& spellName);
         void launchSpell(const string& spellName, const ATarget& target);
 };

@@ -2,7 +2,7 @@
 
 #include "ASpell.hpp"
 
-class Polymorph : public ASpell{
+class Polymorph : public ASpell {
     public:
         ASpell* clone() const;
         Polymorph();

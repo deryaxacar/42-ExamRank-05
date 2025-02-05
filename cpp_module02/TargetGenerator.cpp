@@ -24,5 +24,5 @@ ATarget* TargetGenerator::createTarget(string const &targetName) {
     if(it != _TargetG.end()){
         return it->second->clone();
     }
-    return nullptr;
+    return NULL;
 }

@@ -1,13 +1,15 @@
-#pragma once
+#pragma once 
 
 #include <iostream>
 #include "ATarget.hpp"
 
 using std::string;
+using std::cout;
+using std::endl;
 
 class ATarget;
 
-class ASpell{
+class ASpell {
     protected:
         string _name;
         string _effects;
