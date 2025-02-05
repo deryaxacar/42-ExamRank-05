@@ -2,9 +2,9 @@
   <h2>Sınav Çalışma Notları</h2>
 </div>
 
-- [Level 1 - cpp_module00](#cpp_module00)
-- [Level 2 - cpp_module01](#cpp_module01)
-- [Level 3 - cpp_module02](#cpp_module01)
+- [Level 0 - cpp_module00](#cpp_module00)
+- [Level 1 - cpp_module01](#cpp_module01)
+- [Level 2 - cpp_module02](#cpp_module01)
 
 ---
 
@@ -16,7 +16,7 @@
 ---
 
 <a name="cpp_module00"></a>
-## Level 1 - cpp_module00
+## Level 0 - cpp_module00
 
 `Warlock sınıfı`, `Coplien` formunu takip ederek uygun kapsülleme ve nesne yönelimli prensiplere uygun şekilde tasarlanmıştır. Sınıf, `name` (isim) ve `title` (ünvan) için özel niteliklere sahiptir ve bu nitelikler için getter ve setter metodları sunar. Ayrıca, Warlock'un kendini tanıtması ve yapıcı/yıkıcı mesajlarını işlemesi için metodlar içerir.
 
@@ -110,4 +110,4 @@ Richard: My job here is done!$
 ---
 
 <a name="cpp_module01"></a>
-## Level 2 - cpp_module01
+## Level 1 - cpp_module01
