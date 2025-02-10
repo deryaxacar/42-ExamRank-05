@@ -91,7 +91,7 @@ class Warlock {
 
   - `introduce() const`: Warlock'u tanıtan bir mesajı ekrana yazdıran metod. const anahtar kelimesi, bu metodun sınıfın iç durumunu değiştirmeyeceğini garanti eder.
 
-- **Beklenen çıktı:**
+- ** 00 Beklenen çıktı:**
 
 ```ssh
 ~$ ./a.out | cat -e
@@ -327,5 +327,14 @@ class Dummy : public ATarget {
 
 ---
 
-- **Beklenen Çıktı**
+** 01 Beklenen Çıktı**
 
+```ssh
+~$ ./a.out | cat -e
+Richard: This looks like another boring day.$
+Richard: I am Richard, the Titled!$
+Target Practice Dummy has been fwooshed!$
+Richard: My job here is done!$
+```
+
+---
