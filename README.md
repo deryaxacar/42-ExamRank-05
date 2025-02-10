@@ -327,7 +327,7 @@ class Dummy : public ATarget {
 
 ---
 
-** 01 Beklenen Çıktı**
+**01 Beklenen Çıktı**
 
 ```ssh
 ~$ ./a.out | cat -e
