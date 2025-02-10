@@ -113,6 +113,28 @@ Richard: My job here is done!$
 
 `Warlock` sınıfı ile soyut sınıflar olan `ASpell` ve `ATarget`'i ve bunların somut uygulamaları olan Fwoosh ve Dummy sınıflarını uygulamaya odaklanır. Amaç, bir Warlock'un büyüleri öğrenebileceği, unutabileceği ve hedeflere büyü fırlatabileceği bir sistem oluşturmaktır.
 
+- **Dosyalar**
+
+  - `Warlock.hpp` ve `Warlock.cpp`: `Warlock` sınıfının tanımı ve uygulaması.
+
+  - `ASpell.hpp` ve `ASpell.cpp`: `ASpell` sınıfının tanımı ve uygulaması.
+
+  - `ATarget.hpp` ve `ATarget.cpp`: `ATarget` sınıfının tanımı ve uygulaması.
+
+  - `Fwoosh.hpp ve Fwoosh.cpp`: `Fwoosh` sınıfının tanımı ve uygulaması.
+
+  - `Dummy.hpp` ve `Dummy.cpp`: `Dummy` sınıfının tanımı ve uygulaması.
+
+- **Açıklamalar**
+
+  - `Coplien Formu`: Sınıflar, `varsayılan yapıcı`, `kopya yapıcı`, `atama operatörü` ve `yıkıcı` metodları içermelidir.
+
+  - `Soyut Sınıflar`: `ASpell` ve `ATarget` sınıfları, saf sanal metodlar (`clone()`) içermelidir.
+
+  - `Büyü Yönetimi`: `Warlock`, öğrendiği büyüleri bir container'da saklamalı ve bu büyüleri hedeflere fırlatabilmelidir.
+
+---
+
 **1 - Warlock Sınıfı**
 
 `Warlock` sınıfı, bir isim ve ünvan ile temsil edilen büyücüyü ifade eder. Büyüleri öğrenebilir, unutabilir ve hedeflere büyü fırlatabilir.
@@ -273,3 +295,37 @@ class Fwoosh : public ASpell {
 ```
 
 ---
+
+**5 - Dummy Sınıfı (ATarget'den Türetilmiş)**
+
+`Dummy`, `ATarget` sınıfından türetilen somut bir hedef sınıfıdır.
+
+- **Özellikler:**
+
+  - `Varsayılan yapıcı`, hedefin türünü `"Target Practice Dummy"` olarak ayarlar.
+
+  - `clone()` metodu, yeni bir `Dummy` nesnesi döndürür.
+ 
+- **Örnek Class Yapısı**
+
+```cpp
+class Dummy : public ATarget {
+    public:
+        // clone() metodu, Dummy nesnesinin bir kopyasını oluşturur ve döndürür.
+        // Bu metod, ATarget sınıfındaki saf sanal metodu uygular.
+        ATarget* clone() const;
+
+        // Varsayılan yapıcı metod.
+        // Hedefin türünü "Target Practice Dummy" olarak ayarlar.
+        Dummy();
+
+        // Yıkıcı metod.
+        // Dummy nesnesi yok edildiğinde çağrılır.
+        ~Dummy();
+};
+```
+
+---
+
+- **Beklenen Çıktı**
+
