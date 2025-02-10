@@ -158,10 +158,51 @@ Richard: My job here is done!$
   - `introduce()`: Warlock'u tanıtan bir mesaj yazdırır.
 
   - `learnSpell(ASpell*)`: Warlock'a yeni bir büyü öğretir.
+    - ```cpp
+          // Warlock sınıfının learnSpell metodu, bir büyüyü (ASpell) öğrenmek için kullanılır.
+          // Bu metod, büyünün Warlock'un büyü kitabına (_SpellBook) eklenmesini sağlar.
+          void Warlock::learnSpell(ASpell* spell) {
+          // Büyünün ismi (_SpellBook içinde) aranır.
+          // find() metodu, büyünün ismiyle eşleşen bir öğe bulursa iterator döndürür.
+          // Bulamazsa _SpellBook.end() döndürür.
+            map<string, ASpell*>::iterator it = _SpellBook.find(spell->getName());
+    
+            // Eğer büyü kitabında bu isimde bir büyü yoksa (it == _SpellBook.end()),
+            // büyü kitabına yeni bir büyü eklenir.
+            if (it == _SpellBook.end()) {
+              // Büyünün bir kopyası oluşturulur (clone() metodu kullanılarak),
+              // ve bu kopya _SpellBook'a eklenir.
+              _SpellBook[spell->getName()] = spell->clone();
+            }
+          }
+      ```
 
   - `forgetSpell(const std::string&)`: Warlock'un bir büyüyü unutmasını sağlar.
+    - ```cpp
+        void Warlock::forgetSpell(const string& spellName) {
+          // Büyü kitabında belirtilen büyünün olup olmadığını kontrol et
+          map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
+          
+          // Eğer büyü bulunursa, bellekteki büyüyü serbest bırak ve haritadan kaldır
+          if( it != _SpellBook.end()){
+              delete it->second; // Büyü nesnesini sil
+              _SpellBook.erase(spellName); // Büyüyü büyü kitabından çıkar
+          }
+        }
+      ```
 
   - `launchSpell(const std::string&, ATarget&)`: Belirli bir büyüyü hedefe fırlatır.
+    - ```cpp
+      void Warlock::launchSpell(const string& spellName, const ATarget& target) {
+          // Büyü kitabında belirtilen büyünün olup olmadığını kontrol et
+          map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
+          
+          // Eğer büyü bulunursa, hedefe fırlat
+          if( it != _SpellBook.end()){
+              it->second->launch(target); // Büyüyü başlat
+          }
+      }
+      ```
 
 - **Örnek Class Yapısı**
 
