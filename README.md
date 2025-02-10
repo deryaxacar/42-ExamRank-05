@@ -91,7 +91,7 @@ class Warlock {
 
   - `introduce() const`: Warlock'u tanıtan bir mesajı ekrana yazdıran metod. const anahtar kelimesi, bu metodun sınıfın iç durumunu değiştirmeyeceğini garanti eder.
 
-- ** 00 Beklenen çıktı:**
+- **00 Beklenen çıktı:**
 
 ```ssh
 ~$ ./a.out | cat -e
