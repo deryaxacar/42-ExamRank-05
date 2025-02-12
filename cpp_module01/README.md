@@ -1,4 +1,6 @@
-## Subject 
+### Subject 
+
+---
 
 ```ssh
 Assignment name  : cpp_module01
@@ -90,6 +92,7 @@ int main()
   richard.launchSpell("Fwoosh", bob);
 }
 
+---
 ~$ ./a.out | cat -e
 Richard: This looks like another boring day.$
 Richard: I am Richard, the Titled!$
