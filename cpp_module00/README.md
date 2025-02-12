@@ -1,4 +1,6 @@
-## Subject 
+### Subject 
+
+---
 
 ```ssh
 
@@ -85,3 +87,5 @@ Richard: My job here is done!$
 ~$
 
 ```
+
+---
