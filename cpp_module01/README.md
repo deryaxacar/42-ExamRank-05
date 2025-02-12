@@ -92,10 +92,11 @@ int main()
   richard.launchSpell("Fwoosh", bob);
 }
 
----
 ~$ ./a.out | cat -e
 Richard: This looks like another boring day.$
 Richard: I am Richard, the Titled!$
 Target Practice Dummy has been fwooshed!$
 Richard: My job here is done!$
 ```
+
+---
