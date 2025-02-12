@@ -29,7 +29,7 @@ void Warlock::forgetSpell(const string& spellName) {
 }
 void Warlock::launchSpell(const string& spellName, const ATarget& target) {
     ASpell *tmp = _Spell.createSpell(spellName);
-    if(tmp != NULL){
+    if(tmp != nullptr){
         tmp->launch(target);
         delete tmp;
     }
