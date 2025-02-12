@@ -379,3 +379,115 @@ Richard: My job here is done!$
 ```
 
 ---
+
+<a name="cpp_module02"></a>
+## Level 2 - cpp_module02
+
+`Warlock` sınıfına yeni özellikler eklenir ve `SpellBook` ile `TargetGenerator` sınıfları tanıtılır. Ayrıca, yeni büyüler (`Fireball`, `Polymorph`) ve yeni bir hedef (`BrickWall`) eklenir. Bu modül, büyülerin ve hedeflerin dinamik olarak yönetilmesini sağlar.
+
+---
+
+- **Yeni Özellikler:**
+  
+  - **Fireball:** `"Fireball"` adında bir büyü. **Etkisi:** `"burnt to a crisp"`.
+  
+  - **Polymorph:** `"Polymorph"` adında bir büyü. **Etkisi:** `"turned into a critter"`.
+ 
+- **Yeni Hedef:**
+
+  - **BrickWall:** `"Inconspicuous Red-brick Wall"` adında bir hedef.
+
+- **SpellBook Sınıfı:**
+
+  - Büyüleri yönetir. Büyüleri öğrenme, unutma ve oluşturma işlevlerini sağlar.
+
+  - Kopyalanamaz ve kopya yapıcısı yasaklanmıştır.
+
+- **TargetGenerator Sınıfı:**
+
+  - Hedef türlerini yönetir. Hedef türlerini öğrenme, unutma ve oluşturma işlevlerini sağlar.
+
+  - Kopyalanamaz ve kopya yapıcısı yasaklanmıştır.
+
+---
+
+**1 - SpellBook Sınıfı**
+
+`SpellBook`, `Warlock` sınıfının büyülerini yönetir. Büyüleri öğrenme, unutma ve oluşturma işlevlerini sağlar.
+
+- **Metodlar:**
+
+  - `void learnSpell(ASpell* spell)`: Büyüyü öğrenir ve SpellBook'a ekler.
+    - ```cpp
+          // Warlock sınıfının learnSpell metodu, bir büyüyü (ASpell) öğrenmek için kullanılır.
+          // Bu metod, büyünün Warlock'un büyü kitabına (_SpellBook) eklenmesini sağlar.
+          void Warlock::learnSpell(ASpell* spell) {
+          // Büyünün ismi (_SpellBook içinde) aranır.
+          // find() metodu, büyünün ismiyle eşleşen bir öğe bulursa iterator döndürür.
+          // Bulamazsa _SpellBook.end() döndürür.
+            map<string, ASpell*>::iterator it = _SpellBook.find(spell->getName());
+    
+            // Eğer büyü kitabında bu isimde bir büyü yoksa (it == _SpellBook.end()),
+            // büyü kitabına yeni bir büyü eklenir.
+            if (it == _SpellBook.end()) {
+              // Büyünün bir kopyası oluşturulur (clone() metodu kullanılarak),
+              // ve bu kopya _SpellBook'a eklenir.
+              _SpellBook[spell->getName()] = spell->clone();
+            }
+          }
+      ```
+
+  - `void forgetSpell(const string& spellName)`: Büyüyü unutur ve SpellBook'tan çıkarır.
+    - ```cpp
+        void Warlock::forgetSpell(const string& spellName) {
+          // Büyü kitabında belirtilen büyünün olup olmadığını kontrol et
+          map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
+          
+          // Eğer büyü bulunursa, bellekteki büyüyü serbest bırak ve haritadan kaldır
+          if( it != _SpellBook.end()){
+              delete it->second; // Büyü nesnesini sil
+              _SpellBook.erase(spellName); // Büyüyü büyü kitabından çıkar
+          }
+        }
+      ```
+      
+  - `ASpell* createSpell(const std::string&)`: Büyüyü oluşturur ve döndürür.
+
+    - ```cpp
+      ASpell* SpellBook::createSpell(string const &spellName) {
+          // Verilen büyü adını içeren bir büyü olup olmadığını kontrol etmek için haritayı arar
+          map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
+      
+          // Eğer büyü bulunursa, onun bir kopyasını döndür
+          if (it != _SpellBook.end()) {
+              return it->second->clone();
+          }
+          
+          // Eğer büyü bulunamazsa, nullptr döndür
+          return nullptr;
+      }
+      ```
+
+- **Örnek Class Yapısı**
+
+```cpp
+class SpellBook {
+    private:
+        std::map<std::string, ASpell*> _SpellBook; // Büyüleri saklamak için bir map
+
+        // Kopyalama yasaklandı
+        SpellBook(const SpellBook&);
+        SpellBook& operator=(const SpellBook&);
+
+    public:
+        SpellBook(); // Varsayılan yapıcı
+        ~SpellBook(); // Yıkıcı
+
+        void learnSpell(ASpell* spell); // Büyü öğrenme
+        void forgetSpell(const std::string& spellName); // Büyü unutma
+        ASpell* createSpell(const std::string& spellName); // Büyü oluşturma
+};
+```
+
+---
+
