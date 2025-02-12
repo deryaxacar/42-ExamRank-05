@@ -668,7 +668,7 @@ class TargetGenerator {
 
   ---
 
-  **02 Beklenen Çıktı**
+**02 Beklenen Çıktı**
 
 ```ssh
 ~$ ./a.out | cat -e
