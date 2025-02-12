@@ -666,7 +666,7 @@ class TargetGenerator {
     };
     ```
 
-  ---
+---
 
 **02 Beklenen Çıktı**
 
