@@ -25,5 +25,5 @@ ASpell* SpellBook::createSpell(string const &spellName) {
     if(it != _SpellBook.end()){
         return it->second->clone();
     }
-    return NULL;
+    return nullptr;
 }
