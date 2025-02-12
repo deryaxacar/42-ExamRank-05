@@ -4,7 +4,7 @@
 
 - [Level 0 - cpp_module00](#cpp_module00)
 - [Level 1 - cpp_module01](#cpp_module01)
-- [Level 2 - cpp_module02](#cpp_module01)
+- [Level 2 - cpp_module02](#cpp_module02)
 
 ---
 
@@ -473,21 +473,211 @@ Richard: My job here is done!$
 ```cpp
 class SpellBook {
     private:
-        std::map<std::string, ASpell*> _SpellBook; // Büyüleri saklamak için bir map
-
-        // Kopyalama yasaklandı
-        SpellBook(const SpellBook&);
-        SpellBook& operator=(const SpellBook&);
-
+        map<string, ASpell*> _SpellBook; // Büyüleri saklamak için bir map
     public:
         SpellBook(); // Varsayılan yapıcı
         ~SpellBook(); // Yıkıcı
 
         void learnSpell(ASpell* spell); // Büyü öğrenme
-        void forgetSpell(const std::string& spellName); // Büyü unutma
-        ASpell* createSpell(const std::string& spellName); // Büyü oluşturma
+        void forgetSpell(const string& spellName); // Büyü unutma
+        ASpell* createSpell(const string& spellName); // Büyü oluşturma
 };
 ```
 
 ---
 
+**2 - TargetGenerator Sınıfı**
+
+`TargetGenerator`, Warlock sınıfının hedef türlerini yönetir. Hedef türlerini öğrenme, unutma ve oluşturma işlevlerini sağlar.
+
+- **Metodlar:**
+
+  - `void learnTargetType(ATarget* target)`: Hedef türünü öğrenir.
+    - ```cpp
+      void TargetGenerator::learnTargetType(ATarget* target) {
+          // Hedefin türünün daha önce öğrenilip öğrenilmediğini kontrol et
+          map<string, ATarget*>::iterator it = _TargetG.find(target->getType());
+      
+          // Eğer hedef türü haritada yoksa, haritaya ekle
+          if (it == _TargetG.end()) {
+              _TargetG[target->getType()] = target;
+          }
+      }
+      ```
+
+  - `void forgetTargetType(const string& targetName)`: Hedef türünü unutur.
+    - ```cpp
+      void TargetGenerator::forgetTargetType(string const &targetName) {
+          // Verilen hedef adının haritada olup olmadığını kontrol et
+          map<string, ATarget*>::iterator it = _TargetG.find(targetName);
+      
+          // Eğer hedef bulunursa, haritadan kaldır
+          if (it != _TargetG.end()) {
+              _TargetG.erase(targetName);
+          }
+      }
+      ```
+
+  - `ATarget* createTarget(const string& targetName)`: Hedef türünü oluşturur ve döndürür.
+    - ```cpp
+      ATarget* TargetGenerator::createTarget(string const &targetName) {
+          // Verilen hedef adının haritada olup olmadığını kontrol et
+          map<string, ATarget*>::iterator it = _TargetG.find(targetName);
+      
+          // Eğer hedef bulunursa, onun bir kopyasını döndür
+          if (it != _TargetG.end()) {
+              return it->second->clone();
+          }
+      
+          // Eğer hedef bulunamazsa, nullptr döndür
+          return nullptr;
+      }
+      ```
+
+- **Örnek Class Yapısı**
+
+```cpp
+class TargetGenerator {
+    private:
+        map<string, ATarget*> _TargetBook; // Hedef türlerini saklamak için bir map
+    public:
+        TargetGenerator(); // Varsayılan yapıcı
+        ~TargetGenerator(); // Yıkıcı
+
+        void learnTargetType(ATarget* target); // Hedef türünü öğrenme
+        void forgetTargetType(const string& targetName); // Hedef türünü unutma
+        ATarget* createTarget(const string& targetName); // Hedef türünü oluşturma
+};
+```
+
+---
+
+**3 - Yeni Büyüler ve Hedefler**
+
+---
+
+- **Fireball Sınıfı:**
+
+  - **Büyü adı:** `"Fireball"`.
+
+  - **Etkisi:** `"burnt to a crisp"`.
+
+  - **Class Yapısı:**
+    - ```cpp
+      class Fireball : public ASpell {
+          public:
+              Fireball(); // Varsayılan yapıcı
+              ~Fireball(); // Yıkıcı
+      
+              ASpell* clone() const; // Büyünün bir kopyasını oluşturur
+      };
+      ```
+
+  ---
+
+  - **Polymorph Sınıfı:**
+
+    - **Büyü adı:** `"Polymorph"`.
+
+    - **Etkisi:** `"turned into a critter"`.
+    
+    - **Class Yapısı:**
+      - ```cpp
+        class Polymorph : public ASpell {
+            public:
+                Polymorph(); // Varsayılan yapıcı
+                ~Polymorph(); // Yıkıcı
+        
+                ASpell* clone() const; // Büyünün bir kopyasını oluşturur
+        };
+        ``` 
+
+---
+
+- **BrickWall Sınıfı:**
+
+  - **Hedef türü:** `"Inconspicuous Red-brick Wall"`.
+
+  - **Class Yapısı**
+    - ```cpp
+      class BrickWall : public ATarget {
+          public:
+              BrickWall(); // Varsayılan yapıcı
+              ~BrickWall(); // Yıkıcı
+      
+              ATarget* clone() const; // Hedefin bir kopyasını oluşturur
+      };
+      ```
+
+---
+
+**Warlock Sınıfına Eklenen Özellikler**
+
+`Warlock` sınıfı, `SpellBook` ve `TargetGenerator` sınıflarını kullanarak büyüleri ve hedefleri yönetir.
+
+  - **Metodlar:**
+
+    - `void learnSpell(ASpell* spell):` Büyüyü öğrenir ve SpellBook'a ekler.
+      - ```cpp
+        void Warlock::learnSpell(ASpell* spell) {
+            _Spell.learnSpell(spell);
+        }
+        ```
+
+    - `void forgetSpell(const string& spellName):` Büyüyü unutur ve SpellBook'tan çıkarır.
+      - ```cpp
+        void Warlock::forgetSpell(const string& spellName) {
+            _Spell.forgetSpell(spellName);
+        }
+        ```
+
+    - `void launchSpell(const string& spellName, const ATarget& target)`: Büyüyü hedefe fırlatır.
+      - ```cpp
+        ASpell *tmp = _Spell.createSpell(spellName);
+    
+        if (tmp != nullptr) {
+            tmp->launch(target);
+            delete tmp;
+        }
+        ```
+
+- **Örnek Class Yapısı**
+
+  - ```cpp
+        class Warlock {
+        private:
+            string _name;
+            string _title;
+            SpellBook _SpellBook; // Büyü kitabı
+            TargetGenerator _TargetGenerator; // Hedef üreteci
+    
+        public:
+            Warlock(const string& name, const string& title); // Yapıcı
+            ~Warlock(); // Yıkıcı
+    
+            const string& getName() const;
+            const string& getTitle() const;
+            void setTitle(const string& title);
+    
+            void introduce() const;
+            void learnSpell(ASpell* spell); // Büyü öğrenme
+            void forgetSpell(const string& spellName); // Büyü unutma
+            void launchSpell(const string& spellName, ATarget& target); // Büyü fırlatma
+    };
+    ```
+
+  ---
+
+  **02 Beklenen Çıktı**
+
+```ssh
+~$ ./a.out | cat -e
+Richard: This looks like another boring day.$
+Richard: I am Richard, Hello, I'm Richard the Warlock!!$
+Inconspicuous Red-brick Wall has been turned into a critter!$
+Inconspicuous Red-brick Wall has been burnt to a crisp!$
+Richard: My job here is done!$
+~$
+```
+
+---
