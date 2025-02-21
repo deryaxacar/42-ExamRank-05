@@ -680,4 +680,4 @@ Richard: My job here is done!$
 
 ---
 
-Bu README dosyası Derya ACAR tarafından hazırlanmıştır.
+<p align="center">© 2025 Derya ACAR. All rights reserved.</p>
