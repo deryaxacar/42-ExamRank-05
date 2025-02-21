@@ -680,4 +680,4 @@ Richard: My job here is done!$
 
 ---
 
-<p align="center">© 2025 This project was created by Derya ACAR.</p>
+<p align="center">© 2025 This project was created by Derya ACAR.</p> ss
