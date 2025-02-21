@@ -679,3 +679,5 @@ Richard: My job here is done!$
 ```
 
 ---
+
+Bu README dosyası Derya ACAR tarafından hazırlanmıştır.
