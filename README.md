@@ -555,8 +555,6 @@ class TargetGenerator {
 
 **3 - New Spells and Targets**
 
----
-
 - **Fireball Class:**
 
   - **Spell Name:** `"Fireball"`
@@ -564,7 +562,8 @@ class TargetGenerator {
   - **Effect:** `"burnt to a crisp"`
 
   - **Class Structure:**
-    - ```cpp
+    -
+    ```cpp
       class Fireball : public ASpell {
           public:
               Fireball();           // Default constructor
@@ -583,7 +582,8 @@ class TargetGenerator {
   - **Effect:** `"turned into a critter"`
 
   - **Class Structure:**
-    - ```cpp
+    -
+    ```cpp
       class Polymorph : public ASpell {
           public:
               Polymorph();           // Default constructor
@@ -601,7 +601,8 @@ class TargetGenerator {
   - **Target Type:** `"Inconspicuous Red-brick Wall"`
 
   - **Class Structure:**
-    - ```cpp
+    -
+    ```cpp
       class BrickWall : public ATarget {
           public:
               BrickWall();           // Default constructor
@@ -620,21 +621,24 @@ The `Warlock` class now uses the `SpellBook` and `TargetGenerator` classes to ma
 - **Methods:**
 
   - `void learnSpell(ASpell* spell)`: Learns a spell and adds it to the SpellBook.
-    - ```cpp
+    -
+    ```cpp
       void Warlock::learnSpell(ASpell* spell) {
           _Spell.learnSpell(spell);
       }
       ```
 
   - `void forgetSpell(const string& spellName)`: Forgets a spell and removes it from the SpellBook.
-    - ```cpp
+    -
+    ```cpp
       void Warlock::forgetSpell(const string& spellName) {
           _Spell.forgetSpell(spellName);
       }
       ```
 
   - `void launchSpell(const string& spellName, const ATarget& target)`: Casts the spell on a target.
-    - ```cpp
+    -
+    ```cpp
       ASpell* tmp = _Spell.createSpell(spellName);
 
       if (tmp != nullptr) {
@@ -645,7 +649,8 @@ The `Warlock` class now uses the `SpellBook` and `TargetGenerator` classes to ma
 
 - **Example Class Structure**
 
-  - ```cpp
+  -
+  ```cpp
     class Warlock {
     private:
         string _name;
