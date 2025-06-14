@@ -1,5 +1,5 @@
 <div align="center">
-  <h2>Sınav Çalışma Notları</h2>
+  <h2>Exam Rank 5 Study Notes</h2>
 </div>
 
 - [Level 0 - cpp_module00](#cpp_module00)
@@ -8,41 +8,38 @@
 
 ---
 
-**Açıklama:** sınavda klasör isimlerini `cpp_module_00` `cpp_module_01` `cpp_module_02`
-şeklinde pushlayın. simülatörden çalışırken `cpp_module00` şeklinde `grademe` yapmanız gerekiyor, push yapmanıza gerek yoktur. 
+Note: For the exam, push folder names as cpp_module_00, cpp_module_01, cpp_module_02, etc. However, when working in the simulator, you should use grademe with folder names like cpp_module00. There is no need to push in the simulator.
 
 ---
 
 <a name="cpp_module00"></a>
 ## Level 0 - cpp_module00
 
-`Warlock sınıfı`, `Coplien` formunu takip ederek uygun kapsülleme ve nesne yönelimli prensiplere uygun şekilde tasarlanmıştır. Sınıf, `name` (isim) ve `title` (ünvan) için özel niteliklere sahiptir ve bu nitelikler için getter ve setter metodları sunar. Ayrıca, Warlock'un kendini tanıtması ve yapıcı/yıkıcı mesajlarını işlemesi için metodlar içerir.
+The `Warlock class` is designed following the `Coplien` form and adheres to proper encapsulation and object-oriented principles. The class contains private attributes for `name` and `title`, and provides getter and setter methods for these attributes. Additionally, it includes methods for the Warlock to introduce itself and handle constructor/destructor messages.
 
+- **Attributes**
+  - `name`: A private string attribute representing the Warlock's name.
 
+  - `title`: A private string attribute representing the Warlock's title.
 
-- **Nitelikler**
-  - `name`: Warlock'un ismini temsil eden özel bir string niteliği.
+- **Methods**
+  - `getName()`: Returns a constant reference to the Warlock's name.
 
-  - `title`: Warlock'un ünvanını temsil eden özel bir string niteliği.
+  - `getTitle()`: Returns a constant reference to the Warlock's title.
 
-- **Metodlar**
-  - `getName()`: Warlock'un ismini temsil eden sabit bir string referansı döndürür.
+  - `setTitle(const std::string&)`: Sets the Warlock's title to the provided string value.
 
-  - `getTitle()`: Warlock'un ünvanını temsil eden sabit bir string referansı döndürür.
+  - `introduce() const`: Prints a message introducing the Warlock, including their name and title.
 
-  - `setTitle(const std::string&)`: Warlock'un ünvanını sağlanan string değeriyle ayarlar.
+- **Constructor and Destructor**
+  - `Warlock(const std::string&, const std::string&)`: Constructor that initializes the Warlock with a name and title. Prints a message upon creation.
 
-  - `introduce() const`: Warlock'u tanıtan bir mesaj yazdırır. Bu mesaj, isim ve ünvanı içerir.
+  - `~Warlock()`: Destructor that prints a message when the Warlock is destroyed.
 
-- **Yapıcı ve Yıkıcı**
-  - `Warlock(const std::string&, const std::string&)`: Warlock'u bir isim ve ünvanla başlatan yapıcı metod. Oluşturulduğunda bir mesaj yazdırır.
+- **Constraints**
+  - The `Warlock` class cannot be copied or instantiated without a name and title. This restriction is enforced by deleting the copy constructor and copy assignment operator.
 
-  - `~Warlock()`: Warlock yok edildiğinde bir mesaj yazdıran yıkıcı metod.
-
-- **Kısıtlamalar**
-  - `Warlock sınıfı` kopyalanamaz veya isim ve ünvan olmadan örneklenemez. Kopya yapıcı ve kopya atama operatörü silinerek bu kısıtlama uygulanmıştır.
-
-- **Örnek Class Yapısı**
+- **Example Class Structure**
 
 ```cpp
 #pragma once
@@ -55,41 +52,41 @@ using std::endl;
 
 class Warlock {
     private:
-        string _name;       // Warlock'un ismini tutan özel değişken
-        string _title;      // Warlock'un ünvanını tutan özel değişken
+        string _name;       // Private variable storing the Warlock's name
+        string _title;      // Private variable storing the Warlock's title
 
     public:
-        const string& getName() const; // Warlock'un ismini döndüren getter metodu (const referans olarak)
-        const string& getTitle() const; // Warlock'un ünvanını döndüren getter metodu (const referans olarak)
-        void setTitle(const string& title); // Warlock'un ünvanını ayarlayan setter metodu
+        const string& getName() const;  // Getter method returning the Warlock's name (as const reference)
+        const string& getTitle() const; // Getter method returning the Warlock's title (as const reference)
+        void setTitle(const string& title); // Setter method to set the Warlock's title
 
-        Warlock(const string& name, const string& title); // Yapıcı metod: Warlock'u isim ve ünvan ile başlatır
-        ~Warlock(); // Yıkıcı metod: Warlock yok edildiğinde çağrılır
+        Warlock(const string& name, const string& title); // Constructor: initializes Warlock with name and title
+        ~Warlock(); // Destructor: called when Warlock is destroyed
 
-        void introduce() const; // Warlock'u tanıtan mesajı ekrana yazdıran metod
+        void introduce() const; // Method that prints a message introducing the Warlock
 };
 ```
 
 ---
 
-- **Açıklamalar:**
-  - `#pragma once`: Bu, başlık dosyasının yalnızca bir kez dahil edilmesini sağlar ve çoklu dahil etme sorunlarını önler.
+- **Explanations:**
+  - `#pragma once`: Ensures the header file is included only once, preventing multiple inclusion issues.
 
-  - `using std::string, using std::cout, using std::endl`: Bu ifadeler, `std::` önekini kullanmadan `string`, `cout` ve `endl` gibi standart kütüphane öğelerine erişim sağlar.
+  - `using std::string, using std::cout, using std::endl`: These statements allow access to standard library components like `string`, `cout`, and `endl` without the `std::` prefix.
 
-  - `_name` ve `_title`: Warlock sınıfının özel nitelikleri. Bu değişkenler, sınıfın iç durumunu temsil eder.
+  - `_name` and `_title`: Private attributes of the Warlock class. These variables represent the internal state of the class.
 
-  - `getName()` ve `getTitle()`: Warlock'un ismini ve ünvanını döndüren getter metodları. `const` anahtar kelimesi, bu metodların sınıfın iç durumunu değiştirmeyeceğini garanti eder.
+  - `getName()` and `getTitle()`: Getter methods that return the Warlock's name and title. The `const` keyword ensures that these methods do not modify the object's state.
 
-  - `setTitle():` Warlock'un ünvanını ayarlayan setter metodu. Parametre olarak bir string alır.
+  - `setTitle()`: Setter method to update the Warlock's title. Takes a string as a parameter.
 
-  - `Warlock(const string& name, const string& title)`: Yapıcı metod. Warlock'u isim ve ünvan ile başlatır.
+  - `Warlock(const string& name, const string& title)`: Constructor method that initializes the Warlock with a name and title.
 
-  - `~Warlock()`: Yıkıcı metod. Warlock yok edildiğinde çağrılır ve bir mesaj yazdırır.
+  - `~Warlock()`: Destructor method, called when the Warlock object is destroyed. It prints a message.
 
-  - `introduce() const`: Warlock'u tanıtan bir mesajı ekrana yazdıran metod. const anahtar kelimesi, bu metodun sınıfın iç durumunu değiştirmeyeceğini garanti eder.
+  - `introduce() const`: Method that prints a message introducing the Warlock. The `const` keyword guarantees that the method does not modify the internal state of the object.
 
-- **00 Beklenen çıktı:**
+- **00 Expected Output:**
 
 ```ssh
 ~$ ./a.out | cat -e
@@ -109,264 +106,269 @@ Richard: My job here is done!$
 <a name="cpp_module01"></a>
 ## Level 1 - cpp_module01
 
-`Warlock` sınıfı ile soyut sınıflar olan `ASpell` ve `ATarget`'i ve bunların somut uygulamaları olan Fwoosh ve Dummy sınıflarını uygulamaya odaklanır. Amaç, bir Warlock'un büyüleri öğrenebileceği, unutabileceği ve hedeflere büyü fırlatabileceği bir sistem oluşturmaktır.
+The focus is on implementing the `Warlock` class along with the abstract classes `ASpell` and `ATarget`, and their concrete implementations: `Fwoosh` and `Dummy`. The goal is to build a system where a Warlock can learn, forget, and cast spells on targets.
 
-- **Dosyalar**
+- **Files**
 
-  - `Warlock.hpp` ve `Warlock.cpp`: `Warlock` sınıfının tanımı ve uygulaması.
+  - `Warlock.hpp` and `Warlock.cpp`: Definition and implementation of the `Warlock` class.
 
-  - `ASpell.hpp` ve `ASpell.cpp`: `ASpell` sınıfının tanımı ve uygulaması.
+  - `ASpell.hpp` and `ASpell.cpp`: Definition and implementation of the `ASpell` abstract class.
 
-  - `ATarget.hpp` ve `ATarget.cpp`: `ATarget` sınıfının tanımı ve uygulaması.
+  - `ATarget.hpp` and `ATarget.cpp`: Definition and implementation of the `ATarget` abstract class.
 
-  - `Fwoosh.hpp ve Fwoosh.cpp`: `Fwoosh` sınıfının tanımı ve uygulaması.
+  - `Fwoosh.hpp` and `Fwoosh.cpp`: Definition and implementation of the `Fwoosh` spell class.
 
-  - `Dummy.hpp` ve `Dummy.cpp`: `Dummy` sınıfının tanımı ve uygulaması.
+  - `Dummy.hpp` and `Dummy.cpp`: Definition and implementation of the `Dummy` target class.
 
-- **Açıklamalar**
+- **Notes**
 
-  - `Coplien Formu`: Sınıflar, `varsayılan yapıcı`, `kopya yapıcı`, `atama operatörü` ve `yıkıcı` metodları içermelidir.
+  - **Coplien Form**: Classes must include a default constructor, copy constructor, assignment operator, and destructor.
 
-  - `Soyut Sınıflar`: `ASpell` ve `ATarget` sınıfları, saf sanal metodlar (`clone()`) içermelidir.
+  - **Abstract Classes**: `ASpell` and `ATarget` must contain pure virtual methods such as `clone()`.
 
-  - `Büyü Yönetimi`: `Warlock`, öğrendiği büyüleri bir container'da saklamalı ve bu büyüleri hedeflere fırlatabilmelidir.
+  - **Spell Management**: `Warlock` should store learned spells in a container and be able to cast them on targets.
 
 ---
 
-**1 - Warlock Sınıfı**
+**1 - Warlock Class**
 
-`Warlock` sınıfı, bir isim ve ünvan ile temsil edilen büyücüyü ifade eder. Büyüleri öğrenebilir, unutabilir ve hedeflere büyü fırlatabilir.
+The `Warlock` class represents a wizard characterized by a name and title. It can learn spells, forget them, and cast them on targets.
 
-- **Nitelikler:**
+- **Attributes:**
 
-  - `name`: Warlock'un ismini temsil eden bir string.
+  - `name`: A string representing the Warlock's name.
 
-  - `title`: Warlock'un ünvanını temsil eden bir string.
+  - `title`: A string representing the Warlock's title.
 
-  - `SpellBook`: Warlock'un bildiği büyüleri saklamak için bir container.
+  - `SpellBook`: A container to store the spells known by the Warlock.
 
-- **Metodlar:**
+- **Methods:**
 
-  - `getName()`: Warlock'un ismini döndürür.
+  - `getName()`: Returns the Warlock's name.
 
-  - `getTitle()`: Warlock'un ünvanını döndürür.
+  - `getTitle()`: Returns the Warlock's title.
 
-  - `setTitle(const std::string&)`: Warlock'un ünvanını ayarlar.
+  - `setTitle(const std::string&)`: Sets the Warlock's title.
 
-  - `introduce()`: Warlock'u tanıtan bir mesaj yazdırır.
+  - `introduce()`: Prints a message introducing the Warlock.
 
-  - `learnSpell(ASpell*)`: Warlock'a yeni bir büyü öğretir.
+  - `learnSpell(ASpell*)`: Teaches a new spell to the Warlock.
     - ```cpp
-          // Warlock sınıfının learnSpell metodu, bir büyüyü (ASpell) öğrenmek için kullanılır.
-          // Bu metod, büyünün Warlock'un büyü kitabına (_SpellBook) eklenmesini sağlar.
-          void Warlock::learnSpell(ASpell* spell) {
-          // Büyünün ismi (_SpellBook içinde) aranır.
-          // find() metodu, büyünün ismiyle eşleşen bir öğe bulursa iterator döndürür.
-          // Bulamazsa _SpellBook.end() döndürür.
-            map<string, ASpell*>::iterator it = _SpellBook.find(spell->getName());
-    
-            // Eğer büyü kitabında bu isimde bir büyü yoksa (it == _SpellBook.end()),
-            // büyü kitabına yeni bir büyü eklenir.
-            if (it == _SpellBook.end()) {
-              // Büyünün bir kopyası oluşturulur (clone() metodu kullanılarak),
-              // ve bu kopya _SpellBook'a eklenir.
-              _SpellBook[spell->getName()] = spell->clone();
-            }
-          }
-      ```
-
-  - `forgetSpell(const std::string&)`: Warlock'un bir büyüyü unutmasını sağlar.
-    - ```cpp
-        void Warlock::forgetSpell(const string& spellName) {
-          // Büyü kitabında belirtilen büyünün olup olmadığını kontrol et
-          map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
+          // The `learnSpell` method of the Warlock class is used to teach the Warlock a new spell (ASpell).
+          // This method adds the spell to the Warlock's spell book (`_SpellBook`).
           
-          // Eğer büyü bulunursa, bellekteki büyüyü serbest bırak ve haritadan kaldır
-          if( it != _SpellBook.end()){
-              delete it->second; // Büyü nesnesini sil
-              _SpellBook.erase(spellName); // Büyüyü büyü kitabından çıkar
+          void Warlock::learnSpell(ASpell* spell) {
+              // Searches for the spell name in the _SpellBook.
+              // The `find()` method returns an iterator to the spell if found;
+              // otherwise, it returns `_SpellBook.end()`.
+          
+              map<string, ASpell*>::iterator it = _SpellBook.find(spell->getName());
+          
+              // If the spell with the same name is not already in the spell book (it == _SpellBook.end()),
+              // the new spell is added to the spell book.
+              if (it == _SpellBook.end()) {
+                  // A clone of the spell is created using the `clone()` method,
+                  // and this clone is stored in the _SpellBook.
+                  _SpellBook[spell->getName()] = spell->clone();
+              }
           }
-        }
       ```
 
-  - `launchSpell(const std::string&, ATarget&)`: Belirli bir büyüyü hedefe fırlatır.
+  - `forgetSpell(const std::string&)`: Allows the Warlock to forget a spell.
+    - ```cpp
+      void Warlock::forgetSpell(const string& spellName) {
+        // Check if the specified spell exists in the spell book
+        map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
+        
+        // If the spell is found, release its memory and remove it from the map
+        if (it != _SpellBook.end()) {
+            delete it->second;            // Delete the spell object
+            _SpellBook.erase(spellName);  // Remove the spell from the spell book
+        }
+      }
+      ```
+
+  - `launchSpell(const std::string&, ATarget&)`: Casts a specific spell on the given target.
     - ```cpp
       void Warlock::launchSpell(const string& spellName, const ATarget& target) {
-          // Büyü kitabında belirtilen büyünün olup olmadığını kontrol et
+          // Check if the specified spell exists in the spell book
           map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
           
-          // Eğer büyü bulunursa, hedefe fırlat
-          if( it != _SpellBook.end()){
-              it->second->launch(target); // Büyüyü başlat
+          // If the spell is found, cast it on the target
+          if (it != _SpellBook.end()) {
+              it->second->launch(target); // Launch the spell
           }
       }
       ```
 
-- **Örnek Class Yapısı**
+- **Example Class Structure**
 
 ```cpp
 class Warlock {
     private:
-        string _name;       // Büyücünün adı
-        string _title;      // Büyücünün unvanı
-        SpellBook _Spell;   // Büyücünün büyü kitabı
+        string _name;       // The name of the wizard
+        string _title;      // The title of the wizard
+        SpellBook _Spell;   // The wizard's spell book
 
     public:
-        const string& getName() const; // Büyücünün adını döndürür
-        const string& getTitle() const; // Büyücünün unvanını döndürür
-        void setTitle(const string& title); // Büyücünün unvanını ayarlar
+        const string& getName() const;       // Returns the wizard's name
+        const string& getTitle() const;      // Returns the wizard's title
+        void setTitle(const string& title);  // Sets the wizard's title
 
-        Warlock(const string& name, const string& title); // Kurucu fonksiyon: Büyücüyü adı ve unvanı ile oluşturur
-        ~Warlock(); // Yıkıcı fonksiyon: Büyücü nesnesi yok edildiğinde çağrılır
+        Warlock(const string& name, const string& title); // Constructor: initializes the wizard with a name and title
+        ~Warlock(); // Destructor: called when the wizard object is destroyed
 
-        void introduce() const; // Büyücüyü tanıtan bir mesaj yazdırır
-        void learnSpell(ASpell* spell); // Büyücüye yeni bir büyü öğretir
-        void forgetSpell(const string& spellName); // Büyücünün belirli bir büyüyü unutmasını sağlar
+        void introduce() const;                      // Prints a message introducing the wizard
+        void learnSpell(ASpell* spell);              // Teaches a new spell to the wizard
+        void forgetSpell(const string& spellName);   // Makes the wizard forget a specific spell
 
-        // Büyücünün belirli bir büyüyü hedefe fırlatmasını sağlar
+        // Allows the wizard to cast a specific spell on a target
         void launchSpell(const string& spellName, const ATarget& target);
 };
 ```
 
 ---
 
-**2 - ASpell Sınıfı (Soyut Sınıf)**
+**2 - ASpell Class (Abstract Class)**
 
-`ASpell`, büyülerin temel özelliklerini tanımlayan soyut bir sınıftır.
+`ASpell` is an abstract class that defines the core properties and behaviors of a spell.
 
-- **Nitelikler:**
+- **Attributes:**
 
-  - `name`: Büyünün ismi.
+  - `name`: The name of the spell.
 
-  - `effects`: Büyünün etkileri.
+  - `effects`: The effects of the spell.
 
-- **Metodlar:**
+- **Methods:**
 
-  - `getName()`: Büyünün ismini döndürür.
+  - `getName()`: Returns the name of the spell.
 
-  - `getEffects()`: Büyünün etkilerini döndürür.
+  - `getEffects()`: Returns the effects of the spell.
 
-  - `clone()`: Büyünün bir kopyasını döndüren saf sanal metod.
+  - `clone()`: A pure virtual method that returns a copy of the spell.
 
-  - `launch(const ATarget&)`: Büyüyü belirli bir hedefe fırlatır.
- 
-- **Örnek Class Yapısı**
+  - `launch(const ATarget&)`: Casts the spell on a specific target.
+
+- **Example Class Structure**
 
 ```cpp
 class ASpell {
     protected:
-        string _name;    // Büyünün adı
-        string _effects; // Büyünün etkileri
+        string _name;    // The name of the spell
+        string _effects; // The effects of the spell
 
     public:
-        const string& getName() const; // Büyünün adını döndürür
-        const string& getEffects() const; // Büyünün etkilerini döndürür
+        const string& getName() const;    // Returns the name of the spell
+        const string& getEffects() const; // Returns the effects of the spell
 
-        // Büyünün bir kopyasını oluşturur
-        virtual ASpell* clone() const = 0; // (saf sanal fonksiyon, türetilen sınıflar tarafından uygulanmalıdır)
+        // Creates a copy of the spell
+        virtual ASpell* clone() const = 0; // Pure virtual function to be implemented by derived classes
 
-        ASpell(const string& name, const string& effects); // Kurucu fonksiyon: Büyüyü adı ve etkileri ile oluşturur
-        virtual ~ASpell(); // Yıkıcı fonksiyon: Büyü nesnesi yok edildiğinde çağrılır
+        ASpell(const string& name, const string& effects); // Constructor: initializes the spell with name and effects
+        virtual ~ASpell(); // Virtual destructor: called when the spell object is destroyed
 
-        void launch(const ATarget& target) const; // Büyüyü belirli bir hedefe uygular
+        void launch(const ATarget& target) const; // Applies the spell to a specific target
 };
 ```
 
 ---
 
-**3 - ATarget Sınıfı (Soyut Sınıf)**
+**3 - ATarget Class (Abstract Class)**
 
-`ATarget`, büyülerin hedef alabileceği nesneleri temsil eden soyut bir sınıftır.
+`ATarget` is an abstract class that represents objects that can be targeted by spells.
 
-- **Nitelikler:**
+- **Attributes:**
 
-  - `type`: Hedefin türü.
+  - `type`: The type of the target.
 
-- **Metodlar:**
-  - `getType()`: Hedefin türünü döndürür.
+- **Methods:**
 
-  - `clone()`: Hedefin bir kopyasını döndüren saf sanal metod.
+  - `getType()`: Returns the type of the target.
 
-  - `getHitBySpell(const ASpell&)`: Büyünün hedefi vurduğunda gerçekleşen etkiyi tanımlar.
- 
-- **Örnek Class Yapısı**
+  - `clone()`: A pure virtual method that returns a copy of the target.
+
+  - `getHitBySpell(const ASpell&)`: Defines the effect when a spell hits the target.
+
+- **Example Class Structure**
 
 ```cpp
 class ATarget {
     protected:
-        string _type; // Hedefin türünü tutar (örneğin: "Human", "Dummy", "Stone")
+        string _type; // Stores the type of the target (e.g., "Human", "Dummy", "Stone")
 
     public:
-        const string& getType() const; // Hedefin türünü döndürür
+        const string& getType() const; // Returns the type of the target
 
-        // Hedefin bir kopyasını oluşturur
-        virtual ATarget* clone() const = 0; // (saf sanal fonksiyon, türetilen sınıflar tarafından uygulanmalıdır)
+        // Creates a copy of the target
+        virtual ATarget* clone() const = 0; // Pure virtual function to be implemented by derived classes
 
-        ATarget(const string& type); // Kurucu fonksiyon: Hedefi belirli bir tür ile oluşturur
-        virtual ~ATarget(); // Yıkıcı fonksiyon: Hedef nesnesi yok edildiğinde çağrılır
+        ATarget(const string& type); // Constructor: initializes the target with a specific type
+        virtual ~ATarget(); // Virtual destructor: called when the target object is destroyed
 
-        void getHitBySpell(const ASpell& spell) const; // Hedefin bir büyü tarafından vurulduğunda çağrılır
+        void getHitBySpell(const ASpell& spell) const; // Called when the target is hit by a spell
 };
+
 ```
 
 ---
 
-**4 - Fwoosh Sınıfı (ASpell'den Türetilmiş)**
+**4 - Fwoosh Class (Derived from ASpell)**
 
-`Fwoosh`, `ASpell` sınıfından türetilen somut bir büyü sınıfıdır.
+`Fwoosh` is a concrete spell class derived from the `ASpell` abstract class.
 
-- **Özellikler:**
+- **Properties:**
 
-  - Varsayılan yapıcı ( `Fwoosh() : ATarget("Fwoosh", "fwooshed")` ), büyünün ismini "Fwoosh" ve etkisini "fwooshed" olarak ayarlar.
+  - The default constructor (`Fwoosh() : ASpell("Fwoosh", "fwooshed")`) sets the spell's name to "Fwoosh" and its effect to "fwooshed".
 
-  - `clone()` metodu, yeni bir `Fwoosh` nesnesi (`return new Fwoosh();`) döndürür.
+  - The `clone()` method returns a new instance of `Fwoosh` (`return new Fwoosh();`).
 
-- **Örnek Class Yapısı**
+- **Example Class Structure**
 
 ```cpp
 class Fwoosh : public ASpell {
     public:
-        ASpell* clone() const; // ASpell sınıfının saf sanal fonksiyonunu uygular: Büyünün bir kopyasını oluşturur
+        ASpell* clone() const; // Implements the pure virtual function from ASpell: creates a copy of the spell
 
-        Fwoosh(); // Kurucu fonksiyon: Fwoosh büyüsünü oluşturur ve temel özelliklerini ayarlar
-        ~Fwoosh(); // Yıkıcı fonksiyon: Fwoosh büyüsü yok edildiğinde çağrılır
+        Fwoosh();  // Constructor: Initializes the Fwoosh spell and sets its core properties
+        ~Fwoosh(); // Destructor: Called when the Fwoosh spell is destroyed
 };
 ```
 
 ---
 
-**5 - Dummy Sınıfı (ATarget'den Türetilmiş)**
+**5 - Dummy Class (Derived from ATarget)**
 
-`Dummy`, `ATarget` sınıfından türetilen somut bir hedef sınıfıdır.
+`Dummy` is a concrete target class derived from the `ATarget` abstract class.
 
-- **Özellikler:**
+- **Properties:**
 
-  - `Varsayılan yapıcı`, hedefin türünü `"Target Practice Dummy"` olarak ayarlar.
+  - The **default constructor** sets the target's type to `"Target Practice Dummy"`.
 
-  - `clone()` metodu, yeni bir `Dummy` nesnesi döndürür.
+  - The `clone()` method returns a new instance of `Dummy`.
+
  
-- **Örnek Class Yapısı**
+- **Example Class Structure**
 
 ```cpp
 class Dummy : public ATarget {
     public:
-        // clone() metodu, Dummy nesnesinin bir kopyasını oluşturur ve döndürür.
-        // Bu metod, ATarget sınıfındaki saf sanal metodu uygular.
+        // The clone() method creates and returns a copy of the Dummy object.
+        // Implements the pure virtual method from the ATarget class.
         ATarget* clone() const;
 
-        // Varsayılan yapıcı metod.
-        // Hedefin türünü "Target Practice Dummy" olarak ayarlar.
+        // Default constructor.
+        // Sets the target's type to "Target Practice Dummy".
         Dummy();
 
-        // Yıkıcı metod.
-        // Dummy nesnesi yok edildiğinde çağrılır.
+        // Destructor.
+        // Called when the Dummy object is destroyed.
         ~Dummy();
 };
 ```
 
 ---
 
-**01 Beklenen Çıktı**
+**01 Expected Output**
 
 ```ssh
 ~$ ./a.out | cat -e
@@ -381,292 +383,294 @@ Richard: My job here is done!$
 <a name="cpp_module02"></a>
 ## Level 2 - cpp_module02
 
-`Warlock` sınıfına yeni özellikler eklenir ve `SpellBook` ile `TargetGenerator` sınıfları tanıtılır. Ayrıca, yeni büyüler (`Fireball`, `Polymorph`) ve yeni bir hedef (`BrickWall`) eklenir. Bu modül, büyülerin ve hedeflerin dinamik olarak yönetilmesini sağlar.
+New features are added to the `Warlock` class, and the `SpellBook` and `TargetGenerator` classes are introduced. Additionally, new spells (`Fireball`, `Polymorph`) and a new target (`BrickWall`) are added. This module enables dynamic management of spells and targets.
 
 ---
 
-- **Yeni Özellikler:**
-  
-  - **Fireball:** `"Fireball"` adında bir büyü. **Etkisi:** `"burnt to a crisp"`.
-  
-  - **Polymorph:** `"Polymorph"` adında bir büyü. **Etkisi:** `"turned into a critter"`.
- 
-- **Yeni Hedef:**
+- **New Features:**
 
-  - **BrickWall:** `"Inconspicuous Red-brick Wall"` adında bir hedef.
+  - **Fireball:** A spell named `"Fireball"`.  
+    **Effect:** `"burnt to a crisp"`.
 
-- **SpellBook Sınıfı:**
+  - **Polymorph:** A spell named `"Polymorph"`.  
+    **Effect:** `"turned into a critter"`.
 
-  - Büyüleri yönetir. Büyüleri öğrenme, unutma ve oluşturma işlevlerini sağlar.
+- **New Target:**
 
-  - Kopyalanamaz ve kopya yapıcısı yasaklanmıştır.
+  - **BrickWall:** A target named `"Inconspicuous Red-brick Wall"`.
 
-- **TargetGenerator Sınıfı:**
+- **SpellBook Class:**
 
-  - Hedef türlerini yönetir. Hedef türlerini öğrenme, unutma ve oluşturma işlevlerini sağlar.
+  - Manages spells. Provides functionality to learn, forget, and create spells.
+  - Cannot be copied; copy constructor is disabled.
 
-  - Kopyalanamaz ve kopya yapıcısı yasaklanmıştır.
+- **TargetGenerator Class:**
+
+  - Manages target types. Provides functionality to learn, forget, and create targets.
+  - Cannot be copied; copy constructor is disabled.
 
 ---
 
-**1 - SpellBook Sınıfı**
+**1 - SpellBook Class**
 
-`SpellBook`, `Warlock` sınıfının büyülerini yönetir. Büyüleri öğrenme, unutma ve oluşturma işlevlerini sağlar.
+`SpellBook` manages the spells for the `Warlock` class. It provides functionality to learn, forget, and create spells.
 
-- **Metodlar:**
+- **Methods:**
 
-  - `void learnSpell(ASpell* spell)`: Büyüyü öğrenir ve SpellBook'a ekler.
+
+  - `void learnSpell(ASpell* spell)`: Learns the spell and adds it to the SpellBook.
     - ```cpp
-          // Warlock sınıfının learnSpell metodu, bir büyüyü (ASpell) öğrenmek için kullanılır.
-          // Bu metod, büyünün Warlock'un büyü kitabına (_SpellBook) eklenmesini sağlar.
-          void Warlock::learnSpell(ASpell* spell) {
-          // Büyünün ismi (_SpellBook içinde) aranır.
-          // find() metodu, büyünün ismiyle eşleşen bir öğe bulursa iterator döndürür.
-          // Bulamazsa _SpellBook.end() döndürür.
-            map<string, ASpell*>::iterator it = _SpellBook.find(spell->getName());
-    
-            // Eğer büyü kitabında bu isimde bir büyü yoksa (it == _SpellBook.end()),
-            // büyü kitabına yeni bir büyü eklenir.
-            if (it == _SpellBook.end()) {
-              // Büyünün bir kopyası oluşturulur (clone() metodu kullanılarak),
-              // ve bu kopya _SpellBook'a eklenir.
+      // The learnSpell method of the Warlock class is used to teach a new spell (ASpell).
+      // This method adds the spell to the Warlock's spell book (_SpellBook).
+      void Warlock::learnSpell(ASpell* spell) {
+          // Search for the spell name in _SpellBook.
+          // If found, find() returns an iterator; otherwise, it returns _SpellBook.end().
+          map<string, ASpell*>::iterator it = _SpellBook.find(spell->getName());
+  
+          // If the spell is not already in the book (it == _SpellBook.end()),
+          // add a new copy of the spell to the book.
+          if (it == _SpellBook.end()) {
+              // Create a clone of the spell using clone() and add it to _SpellBook.
               _SpellBook[spell->getName()] = spell->clone();
-            }
           }
+      }
       ```
 
-  - `void forgetSpell(const string& spellName)`: Büyüyü unutur ve SpellBook'tan çıkarır.
+  - `void forgetSpell(const string& spellName)`: Forgets the spell and removes it from the SpellBook.
     - ```cpp
-        void Warlock::forgetSpell(const string& spellName) {
-          // Büyü kitabında belirtilen büyünün olup olmadığını kontrol et
+      void Warlock::forgetSpell(const string& spellName) {
+          // Check if the specified spell exists in the spell book
           map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
-          
-          // Eğer büyü bulunursa, bellekteki büyüyü serbest bırak ve haritadan kaldır
-          if( it != _SpellBook.end()){
-              delete it->second; // Büyü nesnesini sil
-              _SpellBook.erase(spellName); // Büyüyü büyü kitabından çıkar
+  
+          // If the spell is found, free its memory and remove it from the map
+          if (it != _SpellBook.end()) {
+              delete it->second;             // Delete the spell object
+              _SpellBook.erase(spellName);   // Remove the spell from the spell book
           }
-        }
+      }
       ```
       
-  - `ASpell* createSpell(const std::string&)`: Büyüyü oluşturur ve döndürür.
-
+  - `ASpell* createSpell(const std::string&)`: Creates and returns a copy of the specified spell.
+  
     - ```cpp
-      ASpell* SpellBook::createSpell(string const &spellName) {
-          // Verilen büyü adını içeren bir büyü olup olmadığını kontrol etmek için haritayı arar
+      ASpell* SpellBook::createSpell(const string& spellName) {
+          // Search the map to check if a spell with the given name exists
           map<string, ASpell*>::iterator it = _SpellBook.find(spellName);
-      
-          // Eğer büyü bulunursa, onun bir kopyasını döndür
+  
+          // If the spell is found, return a clone of it
           if (it != _SpellBook.end()) {
               return it->second->clone();
           }
-          
-          // Eğer büyü bulunamazsa, nullptr döndür
+  
+          // If the spell is not found, return nullptr
           return nullptr;
       }
       ```
 
-- **Örnek Class Yapısı**
+- **Example Class Structure**
 
 ```cpp
 class SpellBook {
     private:
-        map<string, ASpell*> _SpellBook; // Büyüleri saklamak için bir map
-    public:
-        SpellBook(); // Varsayılan yapıcı
-        ~SpellBook(); // Yıkıcı
+        map<string, ASpell*> _SpellBook; // A map to store spells
 
-        void learnSpell(ASpell* spell); // Büyü öğrenme
-        void forgetSpell(const string& spellName); // Büyü unutma
-        ASpell* createSpell(const string& spellName); // Büyü oluşturma
+    public:
+        SpellBook();  // Default constructor
+        ~SpellBook(); // Destructor
+
+        void learnSpell(ASpell* spell);                  // Learn a new spell
+        void forgetSpell(const string& spellName);       // Forget an existing spell
+        ASpell* createSpell(const string& spellName);    // Create and return a copy of a spell
 };
 ```
 
 ---
 
-**2 - TargetGenerator Sınıfı**
+**2 - TargetGenerator Class**
 
-`TargetGenerator`, Warlock sınıfının hedef türlerini yönetir. Hedef türlerini öğrenme, unutma ve oluşturma işlevlerini sağlar.
+`TargetGenerator` manages the target types for the Warlock class. It provides functionality to learn, forget, and create target instances.
 
-- **Metodlar:**
+- **Methods:**
 
-  - `void learnTargetType(ATarget* target)`: Hedef türünü öğrenir.
+  - `void learnTargetType(ATarget* target)`: Learns a new target type.
     - ```cpp
       void TargetGenerator::learnTargetType(ATarget* target) {
-          // Hedefin türünün daha önce öğrenilip öğrenilmediğini kontrol et
+          // Check if the target type has already been learned
           map<string, ATarget*>::iterator it = _TargetG.find(target->getType());
-      
-          // Eğer hedef türü haritada yoksa, haritaya ekle
+  
+          // If the target type is not in the map, add it
           if (it == _TargetG.end()) {
               _TargetG[target->getType()] = target;
           }
       }
       ```
 
-  - `void forgetTargetType(const string& targetName)`: Hedef türünü unutur.
+  - `void forgetTargetType(const string& targetName)`: Forgets a target type.
     - ```cpp
-      void TargetGenerator::forgetTargetType(string const &targetName) {
-          // Verilen hedef adının haritada olup olmadığını kontrol et
+      void TargetGenerator::forgetTargetType(const string& targetName) {
+          // Check if the target type exists in the map
           map<string, ATarget*>::iterator it = _TargetG.find(targetName);
-      
-          // Eğer hedef bulunursa, haritadan kaldır
+  
+          // If found, remove it from the map
           if (it != _TargetG.end()) {
               _TargetG.erase(targetName);
           }
       }
       ```
 
-  - `ATarget* createTarget(const string& targetName)`: Hedef türünü oluşturur ve döndürür.
+  - `ATarget* createTarget(const string& targetName)`: Creates and returns an instance of the specified target type.
     - ```cpp
-      ATarget* TargetGenerator::createTarget(string const &targetName) {
-          // Verilen hedef adının haritada olup olmadığını kontrol et
+      ATarget* TargetGenerator::createTarget(const string& targetName) {
+          // Check if the target type exists in the map
           map<string, ATarget*>::iterator it = _TargetG.find(targetName);
-      
-          // Eğer hedef bulunursa, onun bir kopyasını döndür
+  
+          // If found, return a clone of the target
           if (it != _TargetG.end()) {
               return it->second->clone();
           }
-      
-          // Eğer hedef bulunamazsa, nullptr döndür
+  
+          // If not found, return nullptr
           return nullptr;
       }
       ```
 
-- **Örnek Class Yapısı**
+- **Example Class Structure**
 
 ```cpp
 class TargetGenerator {
     private:
-        map<string, ATarget*> _TargetBook; // Hedef türlerini saklamak için bir map
-    public:
-        TargetGenerator(); // Varsayılan yapıcı
-        ~TargetGenerator(); // Yıkıcı
+        map<string, ATarget*> _TargetBook; // A map to store target types
 
-        void learnTargetType(ATarget* target); // Hedef türünü öğrenme
-        void forgetTargetType(const string& targetName); // Hedef türünü unutma
-        ATarget* createTarget(const string& targetName); // Hedef türünü oluşturma
+    public:
+        TargetGenerator();  // Default constructor
+        ~TargetGenerator(); // Destructor
+
+        void learnTargetType(ATarget* target);               // Learn a new target type
+        void forgetTargetType(const string& targetName);     // Forget an existing target type
+        ATarget* createTarget(const string& targetName);     // Create and return an instance of a target type
 };
 ```
 
 ---
 
-**3 - Yeni Büyüler ve Hedefler**
+**3 - New Spells and Targets**
 
 ---
 
-- **Fireball Sınıfı:**
+- **Fireball Class:**
 
-  - **Büyü adı:** `"Fireball"`.
+  - **Spell Name:** `"Fireball"`
 
-  - **Etkisi:** `"burnt to a crisp"`.
+  - **Effect:** `"burnt to a crisp"`
 
-  - **Class Yapısı:**
+  - **Class Structure:**
     - ```cpp
       class Fireball : public ASpell {
           public:
-              Fireball(); // Varsayılan yapıcı
-              ~Fireball(); // Yıkıcı
-      
-              ASpell* clone() const; // Büyünün bir kopyasını oluşturur
+              Fireball();           // Default constructor
+              ~Fireball();          // Destructor
+
+              ASpell* clone() const; // Creates a copy of the spell
       };
-      ```
+    ```
 
   ---
 
-  - **Polymorph Sınıfı:**
+- **Polymorph Class:**
 
-    - **Büyü adı:** `"Polymorph"`.
+  - **Spell Name:** `"Polymorph"`
 
-    - **Etkisi:** `"turned into a critter"`.
-    
-    - **Class Yapısı:**
-      - ```cpp
-        class Polymorph : public ASpell {
-            public:
-                Polymorph(); // Varsayılan yapıcı
-                ~Polymorph(); // Yıkıcı
-        
-                ASpell* clone() const; // Büyünün bir kopyasını oluşturur
-        };
-        ``` 
+  - **Effect:** `"turned into a critter"`
+
+  - **Class Structure:**
+    - ```cpp
+      class Polymorph : public ASpell {
+          public:
+              Polymorph();           // Default constructor
+              ~Polymorph();          // Destructor
+
+              ASpell* clone() const; // Creates a copy of the spell
+      };
+    ```
+
 
 ---
 
-- **BrickWall Sınıfı:**
+- **BrickWall Class:**
 
-  - **Hedef türü:** `"Inconspicuous Red-brick Wall"`.
+  - **Target Type:** `"Inconspicuous Red-brick Wall"`
 
-  - **Class Yapısı**
+  - **Class Structure:**
     - ```cpp
       class BrickWall : public ATarget {
           public:
-              BrickWall(); // Varsayılan yapıcı
-              ~BrickWall(); // Yıkıcı
-      
-              ATarget* clone() const; // Hedefin bir kopyasını oluşturur
+              BrickWall();           // Default constructor
+              ~BrickWall();          // Destructor
+
+              ATarget* clone() const; // Creates a copy of the target
       };
-      ```
+    ```
 
 ---
 
-**Warlock Sınıfına Eklenen Özellikler**
+**Additional Features in the Warlock Class**
 
-`Warlock` sınıfı, `SpellBook` ve `TargetGenerator` sınıflarını kullanarak büyüleri ve hedefleri yönetir.
+The `Warlock` class now uses the `SpellBook` and `TargetGenerator` classes to manage spells and targets.
 
-  - **Metodlar:**
+- **Methods:**
 
-    - `void learnSpell(ASpell* spell):` Büyüyü öğrenir ve SpellBook'a ekler.
-      - ```cpp
-        void Warlock::learnSpell(ASpell* spell) {
-            _Spell.learnSpell(spell);
-        }
-        ```
+  - `void learnSpell(ASpell* spell)`: Learns a spell and adds it to the SpellBook.
+    - ```cpp
+      void Warlock::learnSpell(ASpell* spell) {
+          _Spell.learnSpell(spell);
+      }
+      ```
 
-    - `void forgetSpell(const string& spellName):` Büyüyü unutur ve SpellBook'tan çıkarır.
-      - ```cpp
-        void Warlock::forgetSpell(const string& spellName) {
-            _Spell.forgetSpell(spellName);
-        }
-        ```
+  - `void forgetSpell(const string& spellName)`: Forgets a spell and removes it from the SpellBook.
+    - ```cpp
+      void Warlock::forgetSpell(const string& spellName) {
+          _Spell.forgetSpell(spellName);
+      }
+      ```
 
-    - `void launchSpell(const string& spellName, const ATarget& target)`: Büyüyü hedefe fırlatır.
-      - ```cpp
-        ASpell *tmp = _Spell.createSpell(spellName);
-    
-        if (tmp != nullptr) {
-            tmp->launch(target);
-            delete tmp;
-        }
-        ```
+  - `void launchSpell(const string& spellName, const ATarget& target)`: Casts the spell on a target.
+    - ```cpp
+      ASpell* tmp = _Spell.createSpell(spellName);
 
-- **Örnek Class Yapısı**
+      if (tmp != nullptr) {
+          tmp->launch(target);
+          delete tmp;
+      }
+      ```
+
+- **Example Class Structure**
 
   - ```cpp
-        class Warlock {
-        private:
-            string _name;
-            string _title;
-            SpellBook _SpellBook; // Büyü kitabı
-            TargetGenerator _TargetGenerator; // Hedef üreteci
-    
-        public:
-            Warlock(const string& name, const string& title); // Yapıcı
-            ~Warlock(); // Yıkıcı
-    
-            const string& getName() const;
-            const string& getTitle() const;
-            void setTitle(const string& title);
-    
-            void introduce() const;
-            void learnSpell(ASpell* spell); // Büyü öğrenme
-            void forgetSpell(const string& spellName); // Büyü unutma
-            void launchSpell(const string& spellName, ATarget& target); // Büyü fırlatma
+    class Warlock {
+    private:
+        string _name;
+        string _title;
+        SpellBook _SpellBook;          // Spell book
+        TargetGenerator _TargetGenerator; // Target generator
+
+    public:
+        Warlock(const string& name, const string& title); // Constructor
+        ~Warlock(); // Destructor
+
+        const string& getName() const;
+        const string& getTitle() const;
+        void setTitle(const string& title);
+
+        void introduce() const;
+        void learnSpell(ASpell* spell);                   // Learn a spell
+        void forgetSpell(const string& spellName);        // Forget a spell
+        void launchSpell(const string& spellName, ATarget& target); // Cast a spell
     };
     ```
 
 ---
 
-**02 Beklenen Çıktı**
+**02 Expected Output**
 
 ```ssh
 ~$ ./a.out | cat -e
